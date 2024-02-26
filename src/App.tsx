@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import emoji from "emojis-list";
 import { VerticalSlider } from "./components/VerticalSlider";
@@ -12,7 +12,6 @@ import { Question } from "./components/Question";
 import { Options } from "./components/Options";
 import { questionsConfig } from "./lib/config";
 
-
 function App() {
   const [step, setStep] = useState<"quiz" | "results">("quiz");
   const [active, setActive] = useState(0);
@@ -21,14 +20,6 @@ function App() {
   const questions = questionsConfig;
 
   const total = questions.length;
-
-  const { scrollYProgress } = useScroll();
-
-  useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
 
   // Send results to server mocked function
   function sendResultsToServer(answers: Record<string, string>) {
@@ -46,6 +37,12 @@ function App() {
     //   });
   }
 
+  useEffect(() => {
+    if (step === "results") {
+      window.scrollTo(0, 0);
+    }
+  }, [step])
+  ;
   return (
     <div className="App bg-violet-600">
       <VerticalSlider total={total} active={active} onChange={setActive} />
@@ -58,39 +55,40 @@ function App() {
             exit={{ x: 0, opacity: 1, transition: { duration: 1 } }}
           >
             {questions.map((q, i) => (
-              <m.div key={`question-content-${i}`} className="flex flex-col sm:!flex-row h-dvh relative">
-                  <m.div
-                    className="flex flex-col sm:py-10 items-center sm:w-1/2 bg-violet-600 h-1/2 sm:h-full"
-                    onViewportEnter={() => {
-                      setActive(i);
-                    }}
-                  >
-                    <Question question={q.title} id={i} />
-                  </m.div>
-                  <m.div className="flex flex-col items-center justify-center h-1/2 sm:h-dvh sm:w-1/2 bg-white p-5">
-                    <Options
-                      data={q.options}
-                      answer={answers[i]}
-                      setAnswer={(val: string) => {
-                        setAnswers((prev) => ({ ...prev, [i]: val }));
-                      }}
-                    />
-                    {i === questions.length - 1 ? (
-                      <m.button
-                        data-testid={`results-button`}
-                        className="text-3xl font-bold cursor-pointer text-violet-600"
-                        onClick={() => {
-                          setStep("results");
-                          sendResultsToServer(answers);
-                        }}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        {emoji[2996]} Click to see all results
-                      </m.button>
-                    ) : null}
-                  </m.div>
+              <m.div
+                key={`question-content-${i}`}
+                className="flex flex-col sm:!flex-row h-dvh relative"
+             
+              >
+                <m.div className="flex flex-col sm:py-10 items-center sm:w-1/2 bg-violet-600 h-1/2 sm:h-full">
+                  <Question question={q.title} id={i} onViewportEnter={() => {
+                  setActive(i);
+                }}/>
                 </m.div>
+                <m.div className="flex flex-col items-center justify-center h-1/2 sm:h-dvh sm:w-1/2 bg-white p-5">
+                  <Options
+                    data={q.options}
+                    answer={answers[i]}
+                    setAnswer={(val: string) => {
+                      setAnswers((prev) => ({ ...prev, [i]: val }));
+                    }}
+                  />
+                  {i === questions.length - 1 ? (
+                    <m.button
+                      data-testid={`results-button`}
+                      className="text-3xl font-bold cursor-pointer text-violet-600"
+                      onClick={() => {
+                        setStep("results");
+                        sendResultsToServer(answers);
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {emoji[2996]} Click to see all results
+                    </m.button>
+                  ) : null}
+                </m.div>
+              </m.div>
             ))}
           </m.div>
         )}
@@ -119,7 +117,9 @@ function App() {
                   <p className="text-2xl sm:text-3xl text-left p-5">
                     <span>{title}</span>
                     {" - "}
-                    <span className="font-bold">{answer ? answer : "No answer"}</span>
+                    <span className="font-bold">
+                      {answer ? answer : "No answer"}
+                    </span>
                   </p>
                 );
               })}

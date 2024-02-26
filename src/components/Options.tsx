@@ -48,23 +48,35 @@ export const Options = ({
   };
 
   return (
-    <m.div className={`h-full ${data.length>4?'sm:h-1/2':'sm:h-1/3'} flex flex-col w-full`}>
-      <m.div className={`grid grid-cols-3 grid-flow-column-dense sm:grid-cols-${data.length>3?4:3} row-span-1 gap-4 sm:gap-8 items-center justify-center w-full pt-8`}>
+    <m.div
+      className={`h-full ${
+        data.length > 4 ? "sm:h-1/2" : "sm:h-1/3"
+      } flex flex-col w-full`}
+    >
+      <m.div
+        className={`grid grid-cols-3 grid-flow-row-dense sm:!grid-cols-${
+          data.length > 3 ? 4 : 3
+        } row-span-1 gap-4 sm:gap-8 items-center justify-center w-full pt-8`}
+      >
         {data.map((d, i) => (
           <m.button
             data-testid={`${d.label}-${i}`}
             key={`${d.label}-${i}`}
-            className={`text-5xl sm:text-7xl cursor-pointer transition-all delay-0 ${
+            className={`text-5xl sm:text-7xl cursor-pointer ${
               answer === d.label ? "bg-violet-300 p-4 rounded-md" : ""
             }`}
-            onClick={(e) => {e.preventDefault();
+            onClick={(e) => {
+              e.preventDefault();
               handleClick(i);
             }}
             whileHover={{ scale: 1.2 }}
             whileTap={{ scale: 0.9 }}
             onHoverEnd={() => handleHoverEnd(i)}
             onHoverStart={() => handleHover(i)}
-            onTapStart={(e)=> {handleClick(i); e.stopPropagation();}}
+            onTapStart={(e) => {
+              handleClick(i);
+              e.stopPropagation();
+            }}
           >
             {d.icon}
           </m.button>
@@ -72,7 +84,7 @@ export const Options = ({
       </m.div>
       <m.div className="flex flex-col items-center h-2/3">
         <AnimatePresence>
-          {(active) && (
+          {active && (
             <m.p
               key="active"
               initial={{ opacity: 0, y: 20 }}
@@ -80,7 +92,7 @@ export const Options = ({
               exit={{ opacity: 0, y: 20 }}
               className="text-7xl text-left font-bold text-violet-600 pt-14"
             >
-              {active||answer}
+              {active || answer}
             </m.p>
           )}
         </AnimatePresence>
