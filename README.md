@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Rakbank React App with Unit Tests and Framer Motion
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a Quiz React App that utilizes the Framer Motion library for animations. It is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
