@@ -1,29 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-snap-type: y mandatory;
+  /* overflow: hidden; */
+}
+
+body,html {
+  min-height: 100vh;
+  height: 100%;
+  
+}
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root, .App-header {
+  background-color: rgb(124 58 237 / var(--tw-bg-opacity));
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -36,3 +31,37 @@
     transform: rotate(360deg);
   }
 }
+
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: relative; */
+  scroll-snap-align: center;
+  perspective: 500px;
+}
+
+
+section > div {
+  width: 100%;
+  /* height: 600px; */
+  /* position: relative; */
+  min-height: 90vh;
+  margin: 20px;
+  /* overflow: hidden; */
+}
+
+#slider {
+  top: calc(50% - 84px)
+}
+
+/* section > div > p { */
+  /* position: absolute; */
+  /* With respect to scroll configuration */
+  /* top: calc(50% - 144px + 42px); */
+  /* right: 0; */
+  /* bottom: 0; */
+  /* width: 100%;
+  height: 100%; */
+/* } */
