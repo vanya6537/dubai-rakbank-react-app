@@ -80,13 +80,11 @@ body,html {
     display: flex;
     height: 50dvh;
     justify-content: center;
-    position: relative;
     align-items: end;
   }
   section > div {
     padding-top: 20px;
     width: 100%;
-    position: relative;
 
     min-height: 50dvh;
   }  

@@ -49,7 +49,7 @@ export const Options = ({
 
   return (
     <m.div className={`h-full ${data.length>4?'sm:h-1/2':'sm:h-1/3'} flex flex-col w-full`}>
-      <m.div className="grid grid-cols-3 sm:grid-cols-4 row-span-1 gap-4 sm:gap-8 items-center justify-center w-fullpt-8">
+      <m.div className={`grid grid-cols-3 grid-flow-column-dense sm:grid-cols-${data.length>3?4:3} row-span-1 gap-4 sm:gap-8 items-center justify-center w-full pt-8`}>
         {data.map((d, i) => (
           <m.button
             data-testid={`${d.label}-${i}`}
