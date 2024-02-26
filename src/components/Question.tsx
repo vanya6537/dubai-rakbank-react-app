@@ -14,18 +14,17 @@ import {
 export const Question = ({
   question,
   id,
-onViewportEnter
+  onViewportEnter,
 }: {
   question: string;
   id: number;
-  onViewportEnter:()=>void;
+  onViewportEnter: () => void;
 }) => {
   const ref = useRef<any>(undefined);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end end"],
   });
-  
 
   // const y = useParallax(scrollYProgress, 100);
 
@@ -36,9 +35,10 @@ onViewportEnter
       className="w-full sm:h-full "
       onViewportEnter={onViewportEnter}
     >
-      <m.div 
-            ref={ref}
-            className="flex items-center justify-center w-full h-full bg-violet-600 relative">
+      <m.div
+        ref={ref}
+        className="flex items-center justify-center w-full h-full bg-violet-600 relative"
+      >
         <m.p className="text-5xl md:text-7xl text-left pl-8 sm:pl-20 font-bold text-white lg:pr-20 left-[9%]">
           {question}
         </m.p>
