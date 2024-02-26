@@ -58,7 +58,7 @@ function App() {
             exit={{ x: 0, opacity: 1, transition: { duration: 1 } }}
           >
             {questions.map((q, i) => (
-              <m.div key={`question-content-${i}`} className="flex flex-col sm:!flex-row h-dvh">
+              <m.div key={`question-content-${i}`} className="flex flex-col sm:!flex-row h-dvh relative">
                   <m.div
                     className="flex flex-col sm:py-10 items-center sm:w-1/2 bg-violet-600 h-1/2 sm:h-full"
                     onViewportEnter={() => {
