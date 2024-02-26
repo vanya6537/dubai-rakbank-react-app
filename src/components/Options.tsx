@@ -47,8 +47,8 @@ export const Options = ({
   };
 
   return (
-    <m.div className="h-1/3">
-      <m.div className="flex flex-row gap-4 sm:gap-8 items-center justify-center w-full">
+    <m.div className="h-full sm:h-1/3 flex flex-col">
+      <m.div className="flex flex-row gap-4 sm:gap-8 items-center justify-center w-full h-1/3 pt-8">
         {data.map((d, i) => (
           <m.button
             data-testid={`${d.label}-${i}`}
@@ -66,7 +66,7 @@ export const Options = ({
           </m.button>
         ))}
       </m.div>
-      <m.div className="flex flex-col items-center">
+      <m.div className="flex flex-col items-center h-2/3">
         <AnimatePresence>
           {active && (
             <m.p

@@ -21,13 +21,13 @@ export const Question = ({
   const y = useParallax(scrollYProgress, 100);
 
   return (
-    <section key={id} className="w-full h-full">
+    <section key={id} className="w-full sm:h-full">
       <m.div
         ref={ref}
         className="flex items-center justify-center w-full bg-violet-600"
       >
         <m.p
-          className="text-7xl text-left pl-20 font-bold text-white lg:pr-20 left-[9%] mt-[100px]"
+          className="text-5xl md:text-7xl text-left pl-8 sm:pl-20 font-bold text-white lg:pr-20 left-[9%] mt-[100px]"
           style={{ y }}
         >
           {question}

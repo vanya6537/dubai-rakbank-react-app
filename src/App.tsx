@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import emoji from "emojis-list";
 import { VerticalSlider } from "./components/VerticalSlider";
@@ -11,7 +11,7 @@ import {
 import { Question } from "./components/Question";
 import { Options } from "./components/Options";
 import { questionsConfig } from "./lib/config";
-import { send } from "process";
+
 
 function App() {
   const [step, setStep] = useState<"quiz" | "results">("quiz");
@@ -58,17 +58,16 @@ function App() {
             exit={{ x: 0, opacity: 1, transition: { duration: 1 } }}
           >
             {questions.map((q, i) => (
-              <div key={`question-content-${i}`}>
-                <div className="flex !flex-row h-full">
+              <m.div key={`question-content-${i}`} className="flex flex-col sm:!flex-row h-dvh">
                   <m.div
-                    className="flex flex-col py-10 items-center w-1/2 bg-violet-600"
+                    className="flex flex-col sm:py-10 items-center sm:w-1/2 bg-violet-600 h-1/2 sm:h-full"
                     onViewportEnter={() => {
                       setActive(i);
                     }}
                   >
                     <Question question={q.title} id={i} />
                   </m.div>
-                  <div className="flex flex-col items-center justify-center w-1/2 bg-white">
+                  <m.div className="flex flex-col items-center justify-center h-1/2 sm:h-dvh sm:w-1/2 bg-white p-5">
                     <Options
                       data={q.options}
                       answer={answers[i]}
@@ -90,9 +89,8 @@ function App() {
                         {emoji[2996]} Click to see all results
                       </m.button>
                     ) : null}
-                  </div>
-                </div>
-              </div>
+                  </m.div>
+                </m.div>
             ))}
           </m.div>
         )}
@@ -113,15 +111,15 @@ function App() {
             className="flex !flex-row h-screen text-white"
           >
             <m.div className="flex flex-col p-20 items-left w-full h-full bg-violet-600 space-y-4">
-              <h1 className="text-6xl pb-5">Your results:</h1>
+              <h1 className="text-3xl sm:text-6xl pb-5">Your results:</h1>
               {questions.map((q, i) => {
                 const title = q.title;
                 const answer = answers[i];
                 return (
-                  <p className="text-3xl text-left p-5 font-bold">
+                  <p className="text-2xl sm:text-3xl text-left p-5">
                     <span>{title}</span>
                     {" - "}
-                    <span>{answer ? answer : "No answer"}</span>
+                    <span className="font-bold">{answer ? answer : "No answer"}</span>
                   </p>
                 );
               })}

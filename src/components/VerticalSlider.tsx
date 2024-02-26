@@ -14,7 +14,7 @@ export const VerticalSlider = ({
       <div
         id="slider"
         data-testid="slider"
-        className="flex flex-col rounded-full justify-center items-start space-y-4 ml-10 fixed z-10"
+        className="flex flex-col rounded-full justify-center items-start space-y-4 sm:ml-10 fixed z-10"
       >
         {Array.from({ length: total }, (_, i) => i).map((i) => (
           <ToggleCircle
