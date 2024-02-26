@@ -2,6 +2,8 @@
 
 This project is a Quiz React App that utilizes the Framer Motion library for animations. It is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Deployed with Vercel to https://dubai-rakbank-react-app.vercel.app/
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -47,4 +49,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 ## Mocked data 
 Options and questions are configurable through the questionsConfig.ts as mocked API data provider.
+
+## Deploy
+I used Vercel provider to deploy the code to https://dubai-rakbank-react-app.vercel.app/ 
 
