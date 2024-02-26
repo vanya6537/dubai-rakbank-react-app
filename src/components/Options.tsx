@@ -53,10 +53,12 @@ export const Options = ({
           <m.button
             data-testid={`${d.label}-${i}`}
             key={`${d.label}-${i}`}
-            className={`text-7xl cursor-pointer transition-all delay-0 ${answer === d.label ? "bg-violet-300 p-4 rounded-md" : ""}`}
+            className={`text-7xl cursor-pointer transition-all delay-0 ${
+              answer === d.label ? "bg-violet-300 p-4 rounded-md" : ""
+            }`}
             onClick={() => handleClick(i)}
             whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.9}}
+            whileTap={{ scale: 0.9 }}
             onHoverEnd={() => handleHoverEnd(i)}
             onHoverStart={() => handleHover(i)}
           >

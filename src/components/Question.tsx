@@ -1,10 +1,5 @@
-import {  useRef } from "react";
-import {
-  m,
-  useScroll,
-  useTransform,
-  MotionValue,
-} from "framer-motion";
+import { useRef } from "react";
+import { m, useScroll, useTransform, MotionValue } from "framer-motion";
 
 function useParallax(value: MotionValue<number>, distance: number) {
   return useTransform(value, [0, 1], [-distance, distance]);
@@ -22,7 +17,6 @@ export const Question = ({
     target: ref,
     offset: ["start start", "end end"],
   });
-
 
   const y = useParallax(scrollYProgress, 100);
 

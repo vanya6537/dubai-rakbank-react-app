@@ -9,13 +9,11 @@ test("renders app and checks if first question present in DOM", () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-
 test("renders app and checks if second question present in DOM", () => {
   render(<App />);
   const linkElement = screen.getByText(questionsConfig[1].title);
   expect(linkElement).toBeInTheDocument();
 });
-
 
 test("renders app and checks if third question present in DOM", () => {
   render(<App />);

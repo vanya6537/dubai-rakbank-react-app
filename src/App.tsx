@@ -34,16 +34,16 @@ function App() {
   function sendResultsToServer(answers: Record<string, string>) {
     console.log("Sending results to server...");
     console.log(answers);
-    fetch("http://hiremeplease.com/api/submit", {
-      method: "POST",
-      body: JSON.stringify(answers),
-    })
-      .then((res) => {
-        console.log("Results sent to server!");
-      })
-      .catch((err) => {
-        console.error("Error sending results to server: ", err);
-      });
+    // fetch("http://hiremeplease.com/api/submit", {
+    //   method: "POST",
+    //   body: JSON.stringify(answers),
+    // })
+    //   .then((res) => {
+    //     console.log("Results sent to server!");
+    //   })
+    //   .catch((err) => {
+    //     console.error("Error sending results to server: ", err);
+    //   });
   }
 
   return (
