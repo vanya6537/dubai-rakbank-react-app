@@ -6,11 +6,12 @@ import {
   motion as m,
   AnimatePresence,
   useScroll,
-  useSpring
+  useSpring,
 } from "framer-motion";
 import { Question } from "./components/Question";
 import { Options } from "./components/Options";
-import {questionsConfig} from './lib/config';
+import { questionsConfig } from "./lib/config";
+import { send } from "process";
 
 function App() {
   const [step, setStep] = useState<"quiz" | "results">("quiz");
@@ -28,6 +29,22 @@ function App() {
     damping: 30,
     restDelta: 0.001,
   });
+
+  // Send results to server mocked function
+  function sendResultsToServer(answers: Record<string, string>) {
+    console.log("Sending results to server...");
+    console.log(answers);
+    fetch("http://hiremeplease.com/api/submit", {
+      method: "POST",
+      body: JSON.stringify(answers),
+    })
+      .then((res) => {
+        console.log("Results sent to server!");
+      })
+      .catch((err) => {
+        console.error("Error sending results to server: ", err);
+      });
+  }
 
   return (
     <div className="App bg-violet-600">
@@ -63,7 +80,10 @@ function App() {
                       <m.button
                         data-testid={`results-button`}
                         className="text-3xl font-bold cursor-pointer text-violet-600"
-                        onClick={() => setStep("results")}
+                        onClick={() => {
+                          setStep("results");
+                          sendResultsToServer(answers);
+                        }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
